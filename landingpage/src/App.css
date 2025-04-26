@@ -662,12 +662,12 @@ footer {
   }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .mind-map-container {
     padding: 10px;
     display: grid;
-    margin-right: 0px;
-    margin-left: -220px;
+    margin-right: 20px;
+    margin-left: -60px;
   }
 
   .mind-map-nodes {
@@ -679,6 +679,14 @@ footer {
   }
 }
 @media (max-width: 480px) {
+
+  .mind-map-container {
+    padding: 10px;
+    display: grid;
+    margin-right: 0px;
+    margin-left: -180px;
+  }
+
   .mind-map-title {
     font-size: 1.2rem;
   }
