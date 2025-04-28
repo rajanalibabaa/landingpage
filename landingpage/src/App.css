@@ -17,41 +17,50 @@ hr {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* padding: 1rem 2rem; */
   background-color: #ffffff;
   color: #333;
-  /* position: sticky; */
+  position: sticky;
   top: 0;
   z-index: 1000;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.navbar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .navbar-logo {
-  position: relative;
-  top: auto;
-  right: auto;
-  transform: none;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0; /* Prevent logo from shrinking */
 }
 
 .logo {
-  margin-left: 70px;
   height: 90px;
   width: auto;
+  transition: all 0.3s ease;
 }
 
 .navbar-menu {
   display: flex;
   list-style: none;
-  gap: 3rem;
-  /* margin-left: 10px; */
-  margin-right: 40px;
-  /* margin: 0; */
+  margin: 0;
   padding: 0;
+  align-items: center;
+  flex-wrap: nowrap; /* Prevent wrapping */
 }
 
 .navbar-menu li {
   font-size: 1.15rem;
   font-weight: 600;
+  margin-left: 30px;
+  white-space: nowrap; /* Keep text in one line */
 }
 
 .navbar-menu a {
@@ -61,85 +70,102 @@ hr {
   padding: 0.5rem 0.75rem;
   border-radius: 0.375rem;
   transition: all 0.3s ease;
+  display: inline-block;
+  white-space: nowrap; /* Ensure text stays in one line */
 }
 
 .navbar-menu a:hover {
   color: #ffa725;
   background-color: rgba(255, 167, 37, 0.1);
 }
+
 .menu-toggle {
   display: none;
   background: none;
   border: none;
   font-size: 2rem;
   cursor: pointer;
-}
-.menu-icon {
-  font-size: 2rem;
+  color: #333;
+  padding: 0.5rem;
 }
 
-@media (max-width: 768px) {
-  .navbar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+
+/* Desktop (1024px and above) - Horizontal Menu */
+@media (min-width: 1024px) {
+  .logo {
+    margin-left: 70px;
   }
+  
+  .navbar-menu {
+    margin-right: 40px;
+    display: flex !important; /* Force show on desktop */
+  }
+  
+  .menu-toggle {
+    display: none !important; /* Force hide on desktop */
+  }
+}
+
+/* Tablet and Mobile (below 1024px) - Hamburger Menu */
+@media (max-width: 1023px) {
+  .navbar {
+    flex-direction: column;
+    padding: 0.5rem 1.5rem;
+  }
+  
+  .logo {
+    height: 80px;
+    margin-left: 0;
+  }
+  
   .menu-toggle {
     display: block;
   }
+  
   .navbar-menu {
     display: none;
     flex-direction: column;
     width: 100%;
+    gap: 0.75rem;
+    padding: 1rem 0;
   }
+  
   .navbar-menu.open {
     display: flex;
   }
-}
-@media (max-width: 1024px) {
-  .navbar-menu {
-    gap: 2rem;
-    margin-left: 40px;
-  }
-}
-
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .navbar-menu {
-    flex-direction: column;
-    gap: 1rem;
-    margin-left: 0;
-    width: 100%;
-  }
+  
   .navbar-menu li {
     width: 100%;
+    text-align: center;
   }
+  
   .navbar-menu a {
     display: block;
     width: 100%;
+    padding: 0.8rem 1rem;
+    font-size: 1.1rem;
+  }
+  
+  .menu-icon {
+    font-size: 1.8rem;
   }
 }
 
+/* Small Mobile (480px and below) */
 @media (max-width: 480px) {
-  .navbar {
-    padding: 1rem;
+  .logo {
+    height: 65px;
   }
-  .navbar-logo {
-    height: 70px;
-  }
-  .navbar-menu {
-    gap: 0.5rem;
-  }
+  
   .navbar-menu a {
-    padding: 0.5rem 1rem;
+    padding: 0.7rem 0.9rem;
+    font-size: 1rem;
+  }
+  
+  .menu-icon {
+    font-size: 1.6rem;
   }
 }
-
-
 
 .whatsapp-fixed {
   position: fixed;
@@ -157,7 +183,7 @@ hr {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
 }
 
@@ -170,14 +196,13 @@ hr {
   font-size: 12px;
   font-weight: bold;
   margin-top: 5px;
-  color:#27d808;
+  color: #27d808;
 }
 
 .banner {
-
-margin-top: 15px;
-margin-bottom: 15px; 
- color: white;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color: white;
   width: 100%;
   text-align: center;
   background-size: 400% 400%;
@@ -267,7 +292,6 @@ margin-bottom: 15px;
 }
 
 @media (max-width: 1024px) {
-  
   .banner li {
     width: 110px;
     height: 110px;
@@ -282,7 +306,7 @@ margin-bottom: 15px;
 }
 
 @media (max-width: 768px) {
-  .banner-section{
+  .banner-section {
     padding: 0;
   }
   .banner ul {
@@ -312,8 +336,9 @@ margin-bottom: 15px;
 }
 
 @media (max-width: 480px) {
-  .banner-section{
-margin: 0;    padding-top: 50px;
+  .banner-section {
+    margin: 0;
+    padding-top: 50px;
   }
   .banner h3 {
     font-size: 1.5rem;
@@ -506,61 +531,39 @@ footer {
   text-align: center;
   font-family: "Arial", sans-serif;
 }
+
+/* Why MrFranchise and Lead form */
+
+.section-2 {
+  width: 100%;
+}
+
 .main-section {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  flex-wrap: wrap;
-  padding: 2rem;
-  background-color: #181301;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   font-family: "Arial", sans-serif;
+  padding: 2rem;
   gap: 2rem;
 }
 
-@media (max-width: 768px) {
-  .main-section {
-    flex-direction: column;
-    align-items: center; /* Center each child */
-    padding: 1.5rem;
-    gap: 1.5rem;
-  }
-  .main-section > * {
-    width: 100%; /* Optional: makes each child full width */
-    max-width: 500px;
-  }
-  .main-section::-webkit-scrollbar {
-    height: 8px;
-  }
-
-  .main-section::-webkit-scrollbar-thumb {
-    background: #555;
-    border-radius: 4px;
-  }
-
-  .main-section > * {
-    flex: 0 0 auto; /* Prevents shrinking so items scroll */
-    min-width: 80%; /* Adjust as needed */
-  }
-}
 .mind-map-container {
   text-align: center;
   font-family: "Arial", sans-serif;
   max-width: 700px;
   margin-top: 40px;
+  flex: 1;
 }
 
 .mind-map-header {
-  margin-left: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
   margin-bottom: 2rem;
-}
-
-.mind-map-logo {
-  height: 50px; /* Adjust as needed */
-  width: auto;
 }
 
 .mind-map-title {
@@ -575,14 +578,13 @@ footer {
   font-family: "Arial", sans-serif;
 }
 
-/* Horizontal Node Row */
 .mind-map-nodes {
-  margin-left: 160px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
 }
+
 .mind-map-node {
   background: white;
   border-radius: 12px;
@@ -613,28 +615,18 @@ footer {
   margin: 0;
   color: #34495e;
   font-size: 1rem;
-  text-align: left;
+ 
 }
 
 /* Staggered Animations */
 .mind-map-node {
   animation: fadeInSlide 0.5s forwards;
 }
-.node-1 {
-  animation-delay: 0.3s;
-}
-.node-2 {
-  animation-delay: 0.6s;
-}
-.node-3 {
-  animation-delay: 0.9s;
-}
-.node-4 {
-  animation-delay: 1.2s;
-}
-.node-5 {
-  animation-delay: 1.5s;
-}
+.node-1 { animation-delay: 0.3s; }
+.node-2 { animation-delay: 0.6s; }
+.node-3 { animation-delay: 0.9s; }
+.node-4 { animation-delay: 1.2s; }
+.node-5 { animation-delay: 1.5s; }
 
 @keyframes fadeInSlide {
   from {
@@ -647,61 +639,91 @@ footer {
   }
 }
 
-/* Responsive Adjustments */
+/* Lead Form Styles */
+.lead-form {
+  flex: 1;
+  max-width: 400px;
+  margin-top: 40px;
+}
+
+/* Tablet Styles (768px - 1024px) */
+@media (max-width: 1024px) {
+  .main-section {
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+  
+  .mind-map-container {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .mind-map-title {
+    font-size: 1.8rem;
+  }
+  
+  .mind-map-node {
+    min-width: 180px;
+  }
+  
+  .lead-form {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+/* Mobile Styles (up to 768px) */
 @media (max-width: 768px) {
+  .main-section {
+    padding: 1rem;
+  }
+  
   .mind-map-title {
     font-size: 1.5rem;
+    padding: 8px;
   }
-
-  .mind-map-logo {
-    height: 35px;
-  }
-
-  .mind-map-node {
-    max-width: 90%;
-  }
-}
-
-@media (min-width: 768px) {
-  .mind-map-container {
-    padding: 10px;
-    display: grid;
-    margin-right: 20px;
-    margin-left: -60px;
-  }
-
+  
   .mind-map-nodes {
-    grid-template-columns: 1fr; /* One column for mobile */
+   
+    align-items: center;
   }
-
-  .mind-map-title {
-    font-size: 20px;
+  
+  .mind-map-node {
+    max-width: 100%;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+  }
+  
+  .node-icon {
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+  
+  .node-title {
+    font-size: 0.9rem;
   }
 }
+
+/* Small Mobile Styles (up to 480px) */
 @media (max-width: 480px) {
-
-  .mind-map-container {
-    padding: 10px;
-    display: grid;
-    margin-right: 0px;
-    margin-left: -180px;
-  }
-
   .mind-map-title {
     font-size: 1.2rem;
   }
-
+  
   .mind-map-node {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    padding: 0.8rem;
   }
-
+  
   .node-icon {
-    margin-right: 0;
-    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
   }
 }
+
 .franchise-checklist {
   display: flex;
   flex-direction: row;
@@ -789,6 +811,10 @@ footer {
 .about-section {
   text-align: center;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .company-description h2 {
@@ -796,21 +822,23 @@ footer {
   color: orange;
   font-weight: bold;
   text-align: center;
-
   margin-bottom: 1rem;
   font-family: "Arial", sans-serif;
 }
 
 .company-stats {
-  justify-content: space-evenly;
-  margin-left: 45px;
   display: flex;
-  gap: 2rem;
+  justify-content: center;
+  gap: 4rem;
   margin-top: 2rem;
+  flex-wrap: wrap;
 }
 
 .stat-item {
   text-align: center;
+  min-width: 160px;
+  flex: 1;
+  max-width: 200px;
 }
 
 .stat-number {
@@ -824,17 +852,22 @@ footer {
   font-weight: bold;
   color: #666;
   margin-top: 0.5rem;
+  line-height: 1.3;
 }
 
 .company-stats-2 {
   display: flex;
-  gap: 9.5rem;
-  margin-left: 24%;
+  justify-content: center;
+  gap: 6rem;
   margin-top: 4rem;
+  flex-wrap: wrap;
 }
 
 .stat-item-2 {
   text-align: center;
+  min-width: 160px;
+  flex: 1;
+  max-width: 220px;
 }
 
 .stat-number-2 {
@@ -848,107 +881,104 @@ footer {
   color: #666;
   font-weight: bold;
   margin-top: 0.5rem;
+  line-height: 1.3;
 }
 
+.stat-label-2 a {
+  color: orange;
+  text-decoration: none;
+}
+
+/* Responsive adjustments */
 @media (max-width: 1200px) {
   .company-stats {
-    flex-wrap: wrap; /* Allow items to wrap on medium screens */
-    justify-content: center; /* Center items on medium screens */
-    margin-left: 0; /* Remove left margin */
+    gap: 3rem;
   }
-  .company-description h2 {
-    font-size: 1.8rem; /* Adjust font size for medium screens */
+  
+  .company-stats-2 {
+    gap: 4rem;
   }
-  .stat-number {
-    font-size: 2rem; /* Smaller font for numbers */
+}
+
+@media (max-width: 992px) {
+  .company-stats,
+  .company-stats-2 {
+    gap: 2.5rem;
   }
-  .stat-label {
-    font-size: 1.3rem; /* Adjust label size */
+  
+  .stat-item,
+  .stat-item-2 {
+    min-width: 140px;
   }
 }
 
 @media (max-width: 768px) {
-  .company-info {
-    flex-direction: column; /* Stack items vertically on smaller screens */
+  .company-stats,
+  .company-stats-2 {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
   }
-  .company-description h2 {
-    font-size: 1.5rem; /* Further reduce font size */
-  }
+  
   .company-stats {
-    flex-direction: column; /* Stack stats vertically */
-    margin-top: 1rem; /* Add space between stats and description */
-    margin-left: 0; /* Remove left margin */
-    gap: 1rem; /* Reduce gap between items */
+    margin-top: 1.5rem;
   }
-  .company-stats .stat-item {
-    margin-bottom: 1rem; /* Add margin between stat items */
+  
+  .company-stats-2 {
+    margin-top: 2.5rem;
   }
-  .stat-number {
-    font-size: 2rem; /* Adjust font size for smaller screens */
+  
+  .stat-item,
+  .stat-item-2 {
+    margin-bottom: 1rem;
+    max-width: none;
+    width: 100%;
   }
-  .stat-label {
-    font-size: 1.2rem; /* Adjust label size */
+  
+  .company-description h2 {
+    font-size: 1.6rem;
+  }
+  
+  .stat-number,
+  .stat-number-2 {
+    font-size: 2rem;
+  }
+  
+  .stat-label,
+  .stat-label-2 {
+    font-size: 1.2rem;
   }
 }
 
 @media (max-width: 480px) {
   .company-description h2 {
-    font-size: 1.3rem; /* Reduce font size further for small screens */
+    font-size: 1.4rem;
   }
+  
+  .stat-number,
+  .stat-number-2 {
+    font-size: 1.8rem;
+  }
+  
+  .stat-label,
+  .stat-label-2 {
+    font-size: 1.1rem;
+  }
+  
+  .company-stats,
+  .company-stats-2 {
+    gap: 1rem;
+  }
+  
   .company-stats {
-    margin-top: 1rem; /* Reduced top margin */
-    gap: 0.5rem; /* Reduced gap between items */
+    margin-top: 1rem;
   }
-  .stat-number {
-    font-size: 1.8rem; /* Adjust font size for small screens */
-  }
-  .stat-label {
-    font-size: 1.1rem; /* Further reduce label font size */
-  }
-}
-
-@media (max-width: 1200px) {
+  
   .company-stats-2 {
-    gap: 2rem; /* Reduce gap between items */
-    margin-left: 0; /* Remove left margin */
-  }
-  .stat-number-2 {
-    font-size: 2rem; /* Adjust number size */
-  }
-  .stat-label-2 {
-    font-size: 1.3rem; /* Adjust label size */
+    margin-top: 1.5rem;
   }
 }
-
-@media (max-width: 768px) {
-  .company-stats-2 {
-    flex-direction: column; /* Stack items vertically */
-    gap: 1rem; /* Reduce gap */
-    margin-left: 0; /* Remove left margin */
-    margin-top: 2rem; /* Adjust top margin */
-  }
-  .stat-number-2 {
-    font-size: 2rem; /* Smaller font size for numbers */
-  }
-  .stat-label-2 {
-    font-size: 1.2rem; /* Adjust label size */
-  }
-}
-
-@media (max-width: 480px) {
-  .company-stats-2 {
-    gap: 0.5rem; /* Further reduce gap */
-    margin-top: 1rem; /* Adjust top margin */
-  }
-  .stat-number-2 {
-    font-size: 1.8rem; /* Adjust font size */
-  }
-  .stat-label-2 {
-    font-size: 1.1rem; /* Smaller label font */
-  }
-}
-
-/* Modal Overlay */
+/* Modal Overlay - Base Styles */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -956,12 +986,12 @@ footer {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   z-index: 1000;
   opacity: 0;
   transition: opacity 200ms ease-in-out;
+  padding: 1rem;
 }
 
 .ReactModal__Overlay--after-open {
@@ -972,17 +1002,28 @@ footer {
   opacity: 0;
 }
 
-/* Modal Content */
+/* Modal Container - Grid Layout */
 .modal {
+  display: grid;
+  grid-template-rows: auto 1fr;
   background: white;
-  padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-  position: relative;
   transform: translateY(-20px);
   transition: transform 200ms ease-in-out;
   max-height: 90vh;
-  overflow-y: hidden;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Modal Content - Flex Layout */
+.modal-content {
+  padding: 2rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .ReactModal__Content--after-open {
@@ -996,68 +1037,153 @@ footer {
 /* Close Button */
 .close-modal {
   position: absolute;
-
   background: none;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
   color: #030303;
-  transition: color 0.2s;
-  z-index: 1;
-  align-self: flex-end;
-  top: 20px;
-  right: 30px;
+  transition: all 0.2s;
+  z-index: 2;
+  top: 1rem;
+  right: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
 }
 
 .close-modal:hover {
   color: #f42c2c;
+  background: rgba(0, 0, 0, 0.05);
 }
 
-/* Modal Title */
+/* Modal Header */
 .modal-title {
   font-size: 1.8rem;
   color: #2c3e50;
-  margin-bottom: 1.5rem;
+  margin: 0;
   text-align: center;
   font-weight: 600;
+  line-height: 1.3;
+  padding: 2rem 2rem 0 2rem;
 }
 
-@media (max-width: 1200px) {
+/* Desktop (1024px and up) */
+@media (min-width: 1024px) {
   .modal {
-    width: 70%; /* Adjust modal width for medium screens */
+    max-width: 50rem; /* 800px */
+    grid-template-rows: auto 1fr;
   }
-  .modal-title {
-    font-size: 1.6rem; /* Adjust title font size */
+  
+  
+  .modal-content {
+    padding: 0 3rem 3rem 3rem;
   }
-}
-
-@media (max-width: 768px) {
-  .modal {
-    width: 90%; /* More space for smaller screens */
-    padding: 1.5rem; /* Reduce padding for better fit */
-  }
-  .modal-title {
-    font-size: 1.4rem; /* Slightly smaller font for smaller screens */
-  }
+  
   .close-modal {
-    font-size: 1.2rem; /* Smaller close button font size */
-    top: 8px;
-    right: 8px;
+    top: 1.5rem;
+    right: 1.5rem;
   }
 }
 
+/* Tablet (768px to 1023px) */
+/* Tablet (768px to 1023px) - Improved Version */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .modal {
+    max-width: 90%; /* More flexible width */
+    width: 42rem; /* Fallback */
+    margin: 0 auto;
+    display: grid;
+    justify-items: center; /* Center modal content */
+   /* Better for variable content */
+  }
+  
+  .modal-content {
+    display: grid;
+    justify-content: center;
+    padding: 0 2rem 2rem 2rem;
+    width: 100%; /* Ensure full width within container */
+    box-sizing: border-box; /* Include padding in width calculation */
+  }
+  
+  .modal-title {
+    font-size: 1.6rem;
+    padding: 1.5rem 3rem 0 1.5rem; /* More balanced padding */
+    word-break: break-word; /* Prevent overflow */
+  }
+  
+  .close-modal {
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  /* Specific form adjustments for tablet */
+  .modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+  }
+  
+  /* If you have form rows */
+  .form-row {
+    flex-direction: column; /* Stack form elements vertically */
+    gap: 0.75rem;
+  }
+}
+
+/* Mobile (up to 767px) */
+@media (max-width: 767px) {
+  .modal {
+    max-width: calc(100% - 2rem);
+    border-radius: 8px;
+    max-height: 95vh;
+    display: grid;
+     justify-items: center;
+     
+  }
+  
+  .modal-content {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+  }
+  
+  .modal-title {
+    font-size: 1.4rem;
+    padding: 1.25rem 3rem 0 1.25rem;
+  }
+  
+  .close-modal {
+    font-size: 1.3rem;
+    width: 2rem;
+    height: 2rem;
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+}
+
+/* Small Mobile (up to 480px) */
 @media (max-width: 480px) {
   .modal {
-    width: 95%; /* Take almost all available width on very small screens */
-    padding: 1rem; /* Reduce padding further */
+    max-width: calc(100% - 1rem);
+    
   }
+  
+  .modal-content {
+    padding: 0 1rem 1rem 1rem;
+    gap: 1rem;
+  }
+  
   .modal-title {
-    font-size: 1.3rem; /* Further reduce title font size */
+    font-size: 1.3rem;
+    padding: 1rem 2.5rem 0 1rem;
   }
+  
   .close-modal {
-    font-size: 1.1rem; /* Smaller close button font size */
-    top: 6px;
-    right: 6px;
+    top: 0.5rem;
+    right: 0.5rem;
   }
 }
 .lead-form {
@@ -1069,10 +1195,8 @@ footer {
   .lead-form {
     margin-right: 20px;
     display: inline-block;
-     
   }
 }
-
 
 .back-to-top-btn {
   position: fixed;
@@ -1097,5 +1221,4 @@ footer {
 
 .back-to-top-btn:focus {
   outline: none;
-
 }
