@@ -93,7 +93,7 @@ hr {
 /* Desktop (1024px and above) - Horizontal Menu */
 @media (min-width: 1024px) {
   .logo {
-    margin-left: 70px;
+    margin-left: 10px;
   }
   
   .navbar-menu {

@@ -237,8 +237,8 @@ const LeadForm = ({ onSuccess }) => {
             Get in Touch
           </Typography>
           <Box className="form-scrollable-content" sx={{marginRight: '-8px' }}>
-            <form onSubmit={handleSubmit}>
-              <Grid container spacing={2}>
+            <form onSubmit={handleSubmit} >
+              <Grid container spacing={2} sx={{marginTop: '10px'}}>
               
                 <Grid item xs={12}>
                   <TextField 

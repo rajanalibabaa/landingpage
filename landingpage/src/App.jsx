@@ -210,7 +210,6 @@ function App() {
             Free Franchise Consultation ➔{" "}
           </button>
         </div>
-        5
       </div>
 
       <div className="banner-section" ref={section2Ref}>
