@@ -1,0 +1,106 @@
+/* LeadForm.css */
+.lead-form-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.lead-form-paper {
+  background: linear-gradient(to right, #ffffff, #f4fff4);
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  animation: slideFadeIn 0.8s ease-in-out;
+  overflow: visible;
+}
+
+.form-scrollable-content {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.form-scrollable-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.form-scrollable-content::-webkit-scrollbar-thumb {
+  background: #81c784;
+  border-radius: 4px;
+}
+
+.form-scrollable-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+@keyframes slideFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .lead-form-container {
+  
+ margin-right: -20px;
+  
+  }
+  
+  .lead-form-paper {
+    /* padding: 1.5rem; */
+    max-width: 90%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-Right: 50px;
+     width: 250px
+  }
+  
+  .form-scrollable-content {
+    max-height: none;
+    overflow-y: visible;
+  }
+}
+
+@media (max-width: 480px) {
+  .lead-form-container {
+  
+    margin-right: -40px;
+     
+     }
+  .lead-form-paper {
+    padding: 1rem;
+    max-width: 100%;
+    border-radius: 0.5rem;
+  }
+  
+  .MuiTypography-h4 {
+    font-size: 1.5rem !important;
+  }
+  
+  .MuiGrid-container {
+    gap: 0.5rem !important;
+  }
+  
+  .MuiGrid-item {
+    padding: 0 !important;
+  }
+  
+  .MuiTextField-root,
+  .MuiFormControl-root {
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .MuiButton-root {
+    padding: 0.5rem !important;
+    font-size: 0.9rem !important;
+  }
+}
