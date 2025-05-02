@@ -19,26 +19,27 @@ import sec2 from "../src/assets/sec2.jpg";
 import back1 from "../src/assets/back3.jpg";
 import LeadForm from "./Components/LandingFormHandling";
 import Wicon from "../src/assets/whatsappicon.png";
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false); // State to track form submission
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [activeItem, setActiveItem] = useState(0);
+  // const [position, setPosition] = useState({ x: 0, y: 0 });
   const openModal = () => setIsModalOpen(true); // Function to open modal
   const closeModal = () => setIsModalOpen(false); // Function to close modal
-  const [showBackToTop, setShowBackToTop] = useState(false);
-  const scrollRef = useRef(null);
-
   const section1Ref = useRef(null);
   const section2Ref = useRef(null);
   const section3Ref = useRef(null);
   const section4Ref = useRef(null);
   const section5Ref = useRef(null);
-  const scrollToSection = (ref) => {
-    ref.current.scrollIntoView({ behavior: "smooth" });
-  };
+  const scrollRef = useRef(null);
+  const ref = useRef(null);
 
-  const [activeItem, setActiveItem] = useState(0);
+  // const draggingRef = useRef(false);
+  // const positionRef = useRef(position);
+  
   const items = [
     "Static Business Plan",
     "Operation Plan",
@@ -47,19 +48,45 @@ function App() {
     "Legal Document",
   ];
 
+  // useEffect(() => {
+  //   const saved = localStorage.getItem("whatsappPosition");
+  //   if (saved) {
+  //     setPosition(JSON.parse(saved));
+  //   }
+  // }, []);
+
+//   const handleMouseDown = (e) => {
+//     draggingRef.current = true;
+//     const startX = e.clientX;
+//     const startY = e.clientY;
+//     const origX = positionRef.current.x;
+//     const origY = positionRef.current.y;
+
+//     const handleMouseMove = (e) => {
+//       if (!draggingRef.current) return;
+//       const newX = origX + (e.clientX - startX);
+//       const newY = origY + (e.clientY - startY);
+//       const newPos = { x: newX, y: newY };
+//       setPosition(newPos);
+//       positionRef.current = newPos;    };
+
+//     const handleMouseUp = () => {
+//       draggingRef.current = false;
+//       localStorage.setItem("whatsappPosition", JSON.stringify(positionRef.current));
+//       document.removeEventListener("mousemove", handleMouseMove);
+//       document.removeEventListener("mouseup", handleMouseUp);
+//     };
+
+//     document.addEventListener("mousemove", handleMouseMove);
+//     document.addEventListener("mouseup", handleMouseUp);
+//   };
+
+// useEffect(()=>{
+//   positionRef.current=position;
+// },[position])
+
   useEffect(() => {
-    // Check if popup was already shown (using localStorage)
-    const popupShown = localStorage.getItem('popupShown');
-    
-    // Show popup if not shown before or after 24 hours
-    if (!popupShown || Date.now() - popupShown > 24 * 60 * 60 * 1000) {
-      const timer = setTimeout(() => {
-        setIsModalOpen(true);
-        localStorage.setItem('popupShown', Date.now());
-      }, 1000); // Show after 3 seconds
-      
-      return () => clearTimeout(timer);
-    }
+    setIsModalOpen(true);
   }, []);
 
   useEffect(() => {
@@ -90,49 +117,61 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
-  const checkScrollPosition = () => {
-    if (window.scrollY > 300) {
-      setShowBackToTop(true); // Show button after 300px scroll
-    } else {
-      setShowBackToTop(false); // Hide button when at the top
-    }
-  };
-
   useEffect(() => {
-    window.addEventListener("scroll", checkScrollPosition);
-    return () => window.removeEventListener("scroll", checkScrollPosition);
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 300);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleFormSubmit = () => {
-    setIsFormSubmitted(true); // Mark the form as submitted
-    closeModal();
+  const scrollToSection = (ref) => {
+    ref.current?.scrollIntoView({ behavior: "smooth" });
   };
-  const triggerDounload = () => {
+
+  const handleFormSubmit = () => {
+    setIsFormSubmitted(true);
+    setIsModalOpen(false);
+  };
+
+  const triggerDownload = () => {
     const link = document.createElement("a");
-    link.href = "/Franchise Readiness Checklist.pdf"; // Replace with the correct file path
-    link.download = "Franchise Readiness Checklist.pdf"; // Set the file name for download
+    link.href = "/Franchise Readiness Checklist.pdf";
+    link.download = "Franchise Readiness Checklist.pdf";
     document.body.appendChild(link);
-    link.click(); // Trigger the download
+    link.click();
     document.body.removeChild(link);
   };
-  const handleDownloadClick = (e) => {
-    if (isFormSubmitted) {
-      triggerDounload();
-    } else {
-      setIsModalOpen(true);
-    }
+
+  const handleDownloadClick = () => {
+    isFormSubmitted ? triggerDownload() : setIsModalOpen(true);
   };
+  
   return (
     <>
-      <a
-        href="https://wa.me/917449213799"
-        class="whatsapp-fixed"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img src={Wicon} alt="WhatsApp" loading="lazy" />
-        <span>Ask Our Experts?</span>
-      </a>
+   {/* <div
+        ref={ref}
+        className="whatsapp-fixed"
+        onMouseDown={handleMouseDown}
+        style={{
+          position: "fixed",
+          left: position.x,
+          top: position.y,
+          cursor: "grab",
+          zIndex: 1000,
+        }}
+      > */}
+        <a
+                className="whatsapp-fixed"
+
+          href="https://wa.me/917449213799"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src={Wicon} alt="WhatsApp" loading="lazy" />
+          <span>Ask Our Experts?</span>
+        </a>
+      {/* </div> */}
       <nav className="navbar">
         <div className="navbar-header">
           <div className="navbar-logo">
@@ -148,20 +187,20 @@ function App() {
 
         <ul className={`navbar-menu ${menuOpen ? "open" : ""}`}>
           <li>
-            <a onClick={() => scrollToSection(section5Ref)}>About Us</a>
+            <a onClick={() => {scrollToSection(section5Ref), setMenuOpen(false)}}>About Us</a>
           </li>
           <li>
-            <a onClick={() => scrollToSection(section1Ref)}>Why Mr Franchise</a>
+            <a onClick={() => {scrollToSection(section1Ref), setMenuOpen(false)}}>Why Mr Franchise</a>
           </li>
           <li>
-            <a onClick={() => scrollToSection(section2Ref)}>What you get</a>
+            <a onClick={() => {scrollToSection(section2Ref), setMenuOpen(false)}}>What you get</a>
           </li>
           <li>
-            <a onClick={() => scrollToSection(section3Ref)}>Download </a>
+            <a onClick={() => {scrollToSection(section3Ref), setMenuOpen(false)}}>Download </a>
           </li>
           <li>
-            <a onClick={() => scrollToSection(section4Ref)}>
-              Associates Partners
+            <a onClick={() => {scrollToSection(section4Ref), setMenuOpen(false)}}>
+              Associate Partners
             </a>
           </li>
           <li>
@@ -186,15 +225,16 @@ function App() {
         </button>
         {/* <h2 className="modal-title">Free Franchise Consultation</h2> */}
         <div className="modal-content">
-        <h1>Franchise Your Business With Expert Support</h1>
-          <h3>
+          
+          <img src={cmplogo} alt="Logo Brand" style={{ width: "150px", height: "100px", margin: "auto" }} />
+        <h1 style={{ textAlign: "center" ,marginTop:"0"}}>Franchise Your Business With Expert Support</h1>
+          <h3 style={{ textAlign: "center",marginTop:"0" }}>
             Turn your <b style={{ color: "orange" }}>Successful Business </b>
-            into a <br /> <b style={{ color: "orange" }}>
-              Scalable Franchise
-            </b>
-            with <b style={{ color: "orange" }}>MR FRANCHISE</b>
+            into a <b style={{ color: "orange" }}> Scalable Franchise </b> with <b style={{ color: "orange" }}><br />MR FRANCHISE</b>
           </h3>
+           <div className="modal-form">
           <LeadForm onSuccess={handleFormSubmit} />
+          </div>
         </div>
       </ReactModal>
       {/* Section 1: Hero and Banner */}
@@ -299,36 +339,39 @@ function App() {
               </div>
             </div>
           </div>
-          <div>
+          <div className="lead-form-container">
             <LeadForm className="lead-form" onSuccess={handleFormSubmit} />
           </div>
         </div>
       </div>
 
       {/* Section 3: Partners and About */}
-      <div className="section-3">
-        <div className="partners-section" ref={section4Ref}>
-          <h1>Associates Partner Brands</h1>
-          <div className="partners" ref={scrollRef}>
-            {[
-              logo1,
-              logo2,
-              logo3,
-              logo4,
-              logo5,
-              logo6,
-              logo7,
-              logo8,
-              logo9,
-              logo10,
-              logo11,
-              logo12,
-              logo13,
-            ].map((logo, i) => (
-              <img key={i} src={logo} alt={`Logo ${i + 1}`} loading="lazy" />
-            ))}
+      <div className="section-3"><div className="section-3">
+  <div className="partners-section" ref={section4Ref}>
+    <h1>Associates Partner Brands</h1>
+    <div className="partners-container">
+      <div className="partners" ref={scrollRef}>
+        {[
+          logo1, logo2, logo3, logo4, logo5,
+          logo6, logo7, logo8, logo9, logo10,
+          logo11, logo12, logo13,
+          // Duplicate for seamless looping
+          logo1, logo2, logo3, logo4, logo5,
+          logo6, logo7, logo8, logo9, logo10,
+          logo11, logo12, logo13
+        ].map((logo, i) => (
+          <div 
+            key={i} 
+            className="partner-item"
+            style={{ '--delay': i * 0.2 + 's' }}
+          >
+            <img src={logo} alt={`Logo ${i % 13 + 1}`} loading="lazy" />
           </div>
-        </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
         <hr />
 
         <div className="about-section" ref={section5Ref}>
