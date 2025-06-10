@@ -164,11 +164,11 @@ const LeadForm = ({ onSuccess }) => {
             </Box>
           ) : (
             <Box sx={{marginLeft: '15px' }} >
-              <Typography variant="h5" textAlign="center" mb={2} fontWeight={700} color="orange">
+              <Typography variant="h5" textAlign="center"  fontWeight={700} color="orange">
                 Talk to our experts
               </Typography>
               <Box className="form-scrollable-content"  >
-                <form onSubmit={handleSubmit}> <Stack direction={{ xs: 'column', }} spacing={2} flexWrap="wrap" >
+                <form onSubmit={handleSubmit}> <Stack direction={{ xs: 'column', }} marginTop={2} spacing={2} flexWrap="wrap" >
                   <TextField
                     label="Your Name"
                     name="name"

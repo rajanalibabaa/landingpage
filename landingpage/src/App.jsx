@@ -132,6 +132,7 @@ function App() {
   const handleFormSubmit = () => {
     setIsFormSubmitted(true);
     setIsModalOpen(false);
+    triggerDownload();
   };
 
   const triggerDownload = () => {
@@ -348,7 +349,7 @@ function App() {
       {/* Section 3: Partners and About */}
       <div className="section-3"><div className="section-3">
   <div className="partners-section" ref={section4Ref}>
-    <h1>Associates Partner Brands</h1>
+    <h1>Associate Brands</h1>
     <div className="partners-container">
       <div className="partners" ref={scrollRef}>
         {[
