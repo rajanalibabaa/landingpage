@@ -14,6 +14,11 @@ import logo10 from "./assets/logo10.png";
 import logo11 from "./assets/logo11.png";
 import logo12 from "./assets/logo12.png";
 import logo13 from "./assets/logo13.png";
+import logo14 from "./assets/logo14.jpg";
+import logo15 from "./assets/logo15.jpg";
+import logo16 from "./assets/logo16.jpg";
+import logo17 from "./assets/logo17.jpg";
+import logo18 from "./assets/logo18.png";
 import cmplogo from "../src/assets/brandlogo1.jpg";
 import sec2 from "../src/assets/sec2.jpg";
 import back1 from "../src/assets/back3.jpg";
@@ -84,6 +89,26 @@ function App() {
 // useEffect(()=>{
 //   positionRef.current=position;
 // },[position])
+ const brandConfig = [
+    { logo: logo1, url: "https://mrfranchise.in/brands/joose-booster/", name: "Joose Booster" },
+    { logo: logo2, url: "https://mrfranchise.in/brands/brand2/", name: "Brand 2" },
+    { logo: logo3, url: "https://mrfranchise.in/brands/brand3/", name: "Brand 3" },
+    { logo: logo4, url: "https://mrfranchise.in/brands/brand4/", name: "Brand 4" },
+    { logo: logo5, url: "https://mrfranchise.in/brands/brand5/", name: "Brand 5" },
+    { logo: logo6, url: "https://mrfranchise.in/brands/nalan-coffee-bar/", name: "Brand 6" },
+    { logo: logo7, url: "https://mrfranchise.in/brands/brand7/", name: "Brand 7" },
+    { logo: logo8, url: "https://mrfranchise.in/brands/brand8/", name: "Brand 8" },
+    { logo: logo9, url: "https://mrfranchise.in/brands/creamy-nuts-india/", name: "Brand 9" },
+    { logo: logo10, url: "https://mrfranchise.in/brands/brand10/", name: "Brand 10" },
+    { logo: logo11, url: "https://mrfranchise.in/brands/brand11/", name: "Brand 11" },
+    { logo: logo12, url: "https://mrfranchise.in/brands/brand12/", name: "Brand 12" },
+    { logo: logo13, url: "https://mrfranchise.in/brands/brand13/", name: "Brand 13" },
+    { logo: logo14, url: "https://mrfranchise.in/brands/joose-booster/", name: "Brand 14" },
+    { logo: logo15, url: "https://mrfranchise.in/brands/frozen-fudge/", name: "Brand 15" },
+    { logo: logo16, url: "https://mrfranchise.in/brands/coal-barbecues/", name: "Brand 16" },
+    { logo: logo17, url: "https://mrfranchise.in/brands/the-wedding-biryani/", name: "Brand 17" },
+    { logo: logo18, url: "https://mrfranchise.in/brands/chaya-time-1/", name: "Brand 18" },
+  ];
 
   useEffect(() => {
     setIsModalOpen(true);
@@ -347,92 +372,37 @@ function App() {
       </div>
 
       {/* Section 3: Partners and About */}
-      <div className="section-3"><div className="section-3">
+     <div className="section-3">
   <div className="partners-section" ref={section4Ref}>
     <h1>Associate Brands</h1>
     <div className="partners-container">
       <div className="partners" ref={scrollRef}>
-        {[
-          logo1, logo2, logo3, logo4, logo5,
-          logo6, logo7, logo8, logo9, logo10,
-          logo11, logo12, logo13,
-          // Duplicate for seamless looping
-          logo1, logo2, logo3, logo4, logo5,
-          logo6, logo7, logo8, logo9, logo10,
-          logo11, logo12, logo13
-        ].map((logo, i) => (
+        {[...brandConfig, ...brandConfig].map((brand, i) => (
           <div 
-            key={i} 
+            key={`${brand.name}-${i}`} 
             className="partner-item"
             style={{ '--delay': i * 0.2 + 's' }}
           >
-            <img src={logo} alt={`Logo ${i % 13 + 1}`} loading="lazy" />
+            <a 
+              href={brand.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="partner-link"
+              title={`Visit ${brand.name}`}
+              aria-label={`Visit ${brand.name} website`}
+            >
+              <img 
+                src={brand.logo} 
+                alt={brand.name} 
+                loading="lazy"
+              />
+            </a>
           </div>
         ))}
       </div>
     </div>
   </div>
 </div>
-        <hr />
-
-        <div className="about-section" ref={section5Ref}>
-          <div className="company-description">
-            <h2>About Us</h2>
-
-            <div className="company-stats">
-              <div className="stat-item">
-                <div className="stat-number">25+</div>
-                <div className="stat-label">
-                  Years <br />
-                  In Sales <br /> Marketing
-                </div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-number">10+</div>
-                <div className="stat-label">
-                  {" "}
-                  Years <br /> In Business <br /> Development
-                </div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-number">50+</div>
-                <div className="stat-label">
-                  Franchise <br />
-                  Launched <br /> Consulted
-                </div>
-              </div>
-
-              <div className="stat-item">
-                <div className="stat-number">7+</div>
-                <div className="stat-label">
-                  Years <br /> Franchise <br /> Consultation{" "}
-                </div>
-              </div>
-            </div>
-            <div className="company-stats-2">
-              <div className="stat-item-2">
-                <div className="stat-number-2">7+</div>
-                <div className="stat-label-2">
-                  Years <br /> Franchise <br /> Exhibitions
-                </div>
-              </div>
-              <div className="stat-item-2">
-                <div className="stat-number-2">2+</div>
-                <div className="stat-label-2">
-                  Lead Generation <br /> Platform <br />{" "}
-                  <a style={{ color: "orange" }}>"www.MrFranchise.in"</a>
-                </div>
-              </div>
-              <div className="stat-item-2">
-                <div className="stat-number-2">2+</div>
-                <div className="stat-label-2">
-                  Years In <br /> Franchise <br /> Recruitment
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <hr />
 
       <div className="franchise-checklist" ref={section3Ref}>
